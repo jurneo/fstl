@@ -7,6 +7,8 @@ TEMPLATE = app
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -O3
 
+LIBS += -lopengl32
+
 SOURCES += \
     ../src/app.cpp\
     ../src/main.cpp\

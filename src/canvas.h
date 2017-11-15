@@ -18,10 +18,9 @@ class Canvas : public QOpenGLWidget, protected QOpenGLFunctions
 
 public:
     Canvas(QWidget* parent=0);
+    ~Canvas();
 
     void initializeGL();
-    void paintEvent(QPaintEvent* event);
-    ~Canvas();
 
     void view_orthographic();
     void view_perspective();
@@ -40,6 +39,8 @@ protected:
     void resizeGL(int width, int height);
     void set_perspective(float p);
     void view_anim(float v);
+
+    void paintGL();
 
 
 private:

@@ -94,11 +94,9 @@ void Canvas::initializeGL()
     backdrop = new Backdrop();
 }
 
-void Canvas::paintEvent(QPaintEvent *event)
+void Canvas::paintGL()
 {
-    Q_UNUSED(event);
-
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.3, 0.4, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 

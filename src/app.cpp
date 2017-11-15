@@ -3,6 +3,8 @@
 
 #include "app.h"
 #include "window.h"
+#include <QApplication>
+#include <QSurfaceFormat>
 
 App::App(int& argc, char *argv[]) :
     QApplication(argc, argv), window(new Window())
@@ -10,6 +12,10 @@ App::App(int& argc, char *argv[]) :
     QCoreApplication::setOrganizationName("mkeeter");
     QCoreApplication::setOrganizationDomain("https://github.com/mkeeter/fstl");
     QCoreApplication::setApplicationName("fstl");
+
+    QSurfaceFormat format;
+    format.setDepthBufferSize(24);
+    QSurfaceFormat::setDefaultFormat(format);
 
     if (argc > 1)
         window->load_stl(argv[1]);

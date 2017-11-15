@@ -26,11 +26,7 @@ Window::Window(QWidget *parent) :
     setWindowTitle("fstl");
     setAcceptDrops(true);
 
-    QGLFormat format;
-    format.setVersion(2, 1);
-    format.setSampleBuffers(true);
-
-    canvas = new Canvas(format, this);
+    canvas = new Canvas(this);
     setCentralWidget(canvas);
 
     QObject::connect(watcher, &QFileSystemWatcher::fileChanged,

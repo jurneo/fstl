@@ -1,5 +1,6 @@
 #include <QMouseEvent>
 #include <QDebug>
+#include <QSurfaceFormat>
 
 #include <cmath>
 
@@ -8,8 +9,8 @@
 #include "glmesh.h"
 #include "mesh.h"
 
-Canvas::Canvas(const QGLFormat& format, QWidget *parent)
-    : QGLWidget(format, parent), mesh(NULL),
+Canvas::Canvas(QWidget *parent)
+    : QOpenGLWidget(parent), mesh(NULL),
       scale(1), zoom(1), tilt(90), yaw(0),
       perspective(0.25), anim(this, "perspective"), status(" ")
 {
@@ -84,20 +85,18 @@ void Canvas::clear_status()
 
 void Canvas::initializeGL()
 {
-    initializeGLFunctions();
+    initializeOpenGLFunctions();
 
-    mesh_shader.addShaderFromSourceFile(QGLShader::Vertex, ":/gl/mesh.vert");
-    mesh_shader.addShaderFromSourceFile(QGLShader::Fragment, ":/gl/mesh.frag");
+    mesh_shader.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/gl/mesh.vert");
+    mesh_shader.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/gl/mesh.frag");
     mesh_shader.link();
 
     backdrop = new Backdrop();
 }
 
-void Canvas::paintEvent(QPaintEvent *event)
+void Canvas::paintGL()
 {
-    Q_UNUSED(event);
-
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.3, 0.4, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 

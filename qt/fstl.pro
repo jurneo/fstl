@@ -5,7 +5,7 @@ TEMPLATE = app
 
 # Bump optimization up to -O3 in release builds
 QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -O3
+#QMAKE_CXXFLAGS_RELEASE += -O3
 
 LIBS += -lopengl32
 

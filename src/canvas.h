@@ -3,25 +3,24 @@
 
 #include <QWidget>
 #include <QPropertyAnimation>
-#include <QtOpenGL/QGLWidget>
-#include <QtOpenGL/QGLFunctions>
-#include <QtOpenGL/QGLShaderProgram>
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+#include <QOpenGLShaderProgram>
 #include <QMatrix4x4>
 
 class GLMesh;
 class Mesh;
 class Backdrop;
 
-class Canvas : public QGLWidget, protected QGLFunctions
+class Canvas : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 
 public:
-    Canvas(const QGLFormat& format, QWidget* parent=0);
+    Canvas(QWidget* parent=0);
+    ~Canvas();
 
     void initializeGL();
-    void paintEvent(QPaintEvent* event);
-    ~Canvas();
 
     void view_orthographic();
     void view_perspective();
@@ -41,6 +40,8 @@ protected:
     void set_perspective(float p);
     void view_anim(float v);
 
+    void paintGL();
+
 
 private:
     void draw_mesh();
@@ -48,8 +49,8 @@ private:
     QMatrix4x4 transform_matrix() const;
     QMatrix4x4 view_matrix() const;
 
-    QGLShaderProgram mesh_shader;
-    QGLShaderProgram quad_shader;
+    QOpenGLShaderProgram mesh_shader;
+    QOpenGLShaderProgram quad_shader;
 
     GLMesh* mesh;
     Backdrop* backdrop;
@@ -61,7 +62,7 @@ private:
     float yaw;
 
     float perspective;
-    Q_PROPERTY(float perspective WRITE set_perspective);
+    Q_PROPERTY(float perspective WRITE set_perspective)
     QPropertyAnimation anim;
 
     QPoint mouse_pos;

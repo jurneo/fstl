@@ -3,6 +3,7 @@
 
 #include "app.h"
 #include "window.h"
+#include <QApplication>
 
 App::App(int& argc, char *argv[]) :
     QApplication(argc, argv), window(new Window())
@@ -14,7 +15,7 @@ App::App(int& argc, char *argv[]) :
     if (argc > 1)
         window->load_stl(argv[1]);
     else
-        window->load_stl(":gl/sphere.stl");
+        window->load_stl("sphere.stl");
     window->show();
 }
 

@@ -1,19 +1,19 @@
 #ifndef GLMESH_H
 #define GLMESH_H
 
-#include <QtOpenGL/QGLBuffer>
-#include <QtOpenGL/QGLFunctions>
+#include <QOpenGLBuffer>
+#include <QOpenGLFunctions>
 
 class Mesh;
 
-class GLMesh : protected QGLFunctions
+class GLMesh : protected QOpenGLFunctions
 {
 public:
     GLMesh(const Mesh* const mesh);
     void draw(GLuint vp);
 private:
-    QGLBuffer vertices;
-    QGLBuffer indices;
+    QOpenGLBuffer vertices;
+    QOpenGLBuffer indices;
 };
 
 #endif // GLMESH_H
